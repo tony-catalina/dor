@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.DictionariesMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.Dictionaries" >
+    <id column="dictionaries_id" property="dictionariesId" jdbcType="INTEGER" />
+    <result column="dic_key" property="dicKey" jdbcType="VARCHAR" />
+    <result column="dic_value" property="dicValue" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="dic_type" property="dicType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dictionaries_id, dic_key, dic_value, create_date, create_user, dic_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dictionaries
+    where dictionaries_id = #{dictionariesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dictionaries
+    where dictionaries_id = #{dictionariesId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.entity.Dictionaries" >
+    insert into dictionaries (dictionaries_id, dic_key, dic_value, 
+      create_date, create_user, dic_type
+      )
+    values (#{dictionariesId,jdbcType=INTEGER}, #{dicKey,jdbcType=VARCHAR}, #{dicValue,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{createUser,jdbcType=VARCHAR}, #{dicType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.Dictionaries" >
+    insert into dictionaries
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictionariesId != null" >
+        dictionaries_id,
+      </if>
+      <if test="dicKey != null" >
+        dic_key,
+      </if>
+      <if test="dicValue != null" >
+        dic_value,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="dicType != null" >
+        dic_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictionariesId != null" >
+        #{dictionariesId,jdbcType=INTEGER},
+      </if>
+      <if test="dicKey != null" >
+        #{dicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicValue != null" >
+        #{dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="dicType != null" >
+        #{dicType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.entity.Dictionaries" >
+    update dictionaries
+    <set >
+      <if test="dicKey != null" >
+        dic_key = #{dicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dicValue != null" >
+        dic_value = #{dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="dicType != null" >
+        dic_type = #{dicType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dictionaries_id = #{dictionariesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.entity.Dictionaries" >
+    update dictionaries
+    set dic_key = #{dicKey,jdbcType=VARCHAR},
+      dic_value = #{dicValue,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      dic_type = #{dicType,jdbcType=VARCHAR}
+    where dictionaries_id = #{dictionariesId,jdbcType=INTEGER}
+  </update>
+</mapper>

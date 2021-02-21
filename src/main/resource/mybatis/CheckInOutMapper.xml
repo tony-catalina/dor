@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.CheckInOutMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.CheckInOut" >
+    <id column="checkinout_id" property="checkinoutId" jdbcType="INTEGER" />
+    <result column="check_user" property="checkUser" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="DATE" />
+    <result column="check_blr" property="checkBlr" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    checkinout_id, check_user, check_date, check_blr, check_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkinout
+    where checkinout_id = #{checkinoutId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from checkinout
+    where checkinout_id = #{checkinoutId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.entity.CheckInOut" >
+    insert into checkinout (checkinout_id, check_user, check_date, 
+      check_blr, check_state)
+    values (#{checkinoutId,jdbcType=INTEGER}, #{checkUser,jdbcType=VARCHAR}, #{checkDate,jdbcType=DATE}, 
+      #{checkBlr,jdbcType=VARCHAR}, #{checkState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.CheckInOut" >
+    insert into checkinout
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkinoutId != null" >
+        checkinout_id,
+      </if>
+      <if test="checkUser != null" >
+        check_user,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="checkBlr != null" >
+        check_blr,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkinoutId != null" >
+        #{checkinoutId,jdbcType=INTEGER},
+      </if>
+      <if test="checkUser != null" >
+        #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="checkBlr != null" >
+        #{checkBlr,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.entity.CheckInOut" >
+    update checkinout
+    <set >
+      <if test="checkUser != null" >
+        check_user = #{checkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=DATE},
+      </if>
+      <if test="checkBlr != null" >
+        check_blr = #{checkBlr,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where checkinout_id = #{checkinoutId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.entity.CheckInOut" >
+    update checkinout
+    set check_user = #{checkUser,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=DATE},
+      check_blr = #{checkBlr,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=VARCHAR}
+    where checkinout_id = #{checkinoutId,jdbcType=INTEGER}
+  </update>
+</mapper>

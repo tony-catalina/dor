@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.DormitoryMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.Dormitory" >
+    <id column="dormitory_id" property="dormitoryId" jdbcType="INTEGER" />
+    <result column="dor_building" property="dorBuilding" jdbcType="VARCHAR" />
+    <result column="dor_number" property="dorNumber" jdbcType="VARCHAR" />
+    <result column="dor_floor" property="dorFloor" jdbcType="VARCHAR" />
+    <result column="dor_gly" property="dorGly" jdbcType="VARCHAR" />
+    <result column="dor_rzrs" property="dorRzrs" jdbcType="INTEGER" />
+    <result column="dor_krzrs" property="dorKrzrs" jdbcType="INTEGER" />
+    <result column="dor_szxy" property="dorSzxy" jdbcType="VARCHAR" />
+    <result column="dor_fdy" property="dorFdy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_infoid" property="updateInfoid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dormitory_id, dor_building, dor_number, dor_floor, dor_gly, dor_rzrs, dor_krzrs, 
+    dor_szxy, dor_fdy, create_time, create_user, update_date, update_user, update_infoid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dormitory
+    where dormitory_id = #{dormitoryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dormitory
+    where dormitory_id = #{dormitoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.entity.Dormitory" >
+    insert into dormitory (dormitory_id, dor_building, dor_number, 
+      dor_floor, dor_gly, dor_rzrs, 
+      dor_krzrs, dor_szxy, dor_fdy, 
+      create_time, create_user, update_date, 
+      update_user, update_infoid)
+    values (#{dormitoryId,jdbcType=INTEGER}, #{dorBuilding,jdbcType=VARCHAR}, #{dorNumber,jdbcType=VARCHAR}, 
+      #{dorFloor,jdbcType=VARCHAR}, #{dorGly,jdbcType=VARCHAR}, #{dorRzrs,jdbcType=INTEGER}, 
+      #{dorKrzrs,jdbcType=INTEGER}, #{dorSzxy,jdbcType=VARCHAR}, #{dorFdy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{createUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateInfoid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.Dormitory" >
+    insert into dormitory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dormitoryId != null" >
+        dormitory_id,
+      </if>
+      <if test="dorBuilding != null" >
+        dor_building,
+      </if>
+      <if test="dorNumber != null" >
+        dor_number,
+      </if>
+      <if test="dorFloor != null" >
+        dor_floor,
+      </if>
+      <if test="dorGly != null" >
+        dor_gly,
+      </if>
+      <if test="dorRzrs != null" >
+        dor_rzrs,
+      </if>
+      <if test="dorKrzrs != null" >
+        dor_krzrs,
+      </if>
+      <if test="dorSzxy != null" >
+        dor_szxy,
+      </if>
+      <if test="dorFdy != null" >
+        dor_fdy,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateInfoid != null" >
+        update_infoid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dormitoryId != null" >
+        #{dormitoryId,jdbcType=INTEGER},
+      </if>
+      <if test="dorBuilding != null" >
+        #{dorBuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="dorNumber != null" >
+        #{dorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dorFloor != null" >
+        #{dorFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="dorGly != null" >
+        #{dorGly,jdbcType=VARCHAR},
+      </if>
+      <if test="dorRzrs != null" >
+        #{dorRzrs,jdbcType=INTEGER},
+      </if>
+      <if test="dorKrzrs != null" >
+        #{dorKrzrs,jdbcType=INTEGER},
+      </if>
+      <if test="dorSzxy != null" >
+        #{dorSzxy,jdbcType=VARCHAR},
+      </if>
+      <if test="dorFdy != null" >
+        #{dorFdy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateInfoid != null" >
+        #{updateInfoid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.entity.Dormitory" >
+    update dormitory
+    <set >
+      <if test="dorBuilding != null" >
+        dor_building = #{dorBuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="dorNumber != null" >
+        dor_number = #{dorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dorFloor != null" >
+        dor_floor = #{dorFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="dorGly != null" >
+        dor_gly = #{dorGly,jdbcType=VARCHAR},
+      </if>
+      <if test="dorRzrs != null" >
+        dor_rzrs = #{dorRzrs,jdbcType=INTEGER},
+      </if>
+      <if test="dorKrzrs != null" >
+        dor_krzrs = #{dorKrzrs,jdbcType=INTEGER},
+      </if>
+      <if test="dorSzxy != null" >
+        dor_szxy = #{dorSzxy,jdbcType=VARCHAR},
+      </if>
+      <if test="dorFdy != null" >
+        dor_fdy = #{dorFdy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateInfoid != null" >
+        update_infoid = #{updateInfoid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dormitory_id = #{dormitoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.entity.Dormitory" >
+    update dormitory
+    set dor_building = #{dorBuilding,jdbcType=VARCHAR},
+      dor_number = #{dorNumber,jdbcType=VARCHAR},
+      dor_floor = #{dorFloor,jdbcType=VARCHAR},
+      dor_gly = #{dorGly,jdbcType=VARCHAR},
+      dor_rzrs = #{dorRzrs,jdbcType=INTEGER},
+      dor_krzrs = #{dorKrzrs,jdbcType=INTEGER},
+      dor_szxy = #{dorSzxy,jdbcType=VARCHAR},
+      dor_fdy = #{dorFdy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_infoid = #{updateInfoid,jdbcType=VARCHAR}
+    where dormitory_id = #{dormitoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

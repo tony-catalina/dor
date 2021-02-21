@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.SleepCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.SleepCheck" >
+    <id column="sleepcheck_id" property="sleepcheckId" jdbcType="INTEGER" />
+    <result column="sc_user" property="scUser" jdbcType="VARCHAR" />
+    <result column="sc_dor" property="scDor" jdbcType="VARCHAR" />
+    <result column="sc_date" property="scDate" jdbcType="DATE" />
+    <result column="sc_isall" property="scIsall" jdbcType="VARCHAR" />
+    <result column="sc_absentees" property="scAbsentees" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sleepcheck_id, sc_user, sc_dor, sc_date, sc_isall, sc_absentees
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sleepcheck
+    where sleepcheck_id = #{sleepcheckId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sleepcheck
+    where sleepcheck_id = #{sleepcheckId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.entity.SleepCheck" >
+    insert into sleepcheck (sleepcheck_id, sc_user, sc_dor, 
+      sc_date, sc_isall, sc_absentees
+      )
+    values (#{sleepcheckId,jdbcType=INTEGER}, #{scUser,jdbcType=VARCHAR}, #{scDor,jdbcType=VARCHAR}, 
+      #{scDate,jdbcType=DATE}, #{scIsall,jdbcType=VARCHAR}, #{scAbsentees,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.SleepCheck" >
+    insert into sleepcheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sleepcheckId != null" >
+        sleepcheck_id,
+      </if>
+      <if test="scUser != null" >
+        sc_user,
+      </if>
+      <if test="scDor != null" >
+        sc_dor,
+      </if>
+      <if test="scDate != null" >
+        sc_date,
+      </if>
+      <if test="scIsall != null" >
+        sc_isall,
+      </if>
+      <if test="scAbsentees != null" >
+        sc_absentees,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sleepcheckId != null" >
+        #{sleepcheckId,jdbcType=INTEGER},
+      </if>
+      <if test="scUser != null" >
+        #{scUser,jdbcType=VARCHAR},
+      </if>
+      <if test="scDor != null" >
+        #{scDor,jdbcType=VARCHAR},
+      </if>
+      <if test="scDate != null" >
+        #{scDate,jdbcType=DATE},
+      </if>
+      <if test="scIsall != null" >
+        #{scIsall,jdbcType=VARCHAR},
+      </if>
+      <if test="scAbsentees != null" >
+        #{scAbsentees,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.entity.SleepCheck" >
+    update sleepcheck
+    <set >
+      <if test="scUser != null" >
+        sc_user = #{scUser,jdbcType=VARCHAR},
+      </if>
+      <if test="scDor != null" >
+        sc_dor = #{scDor,jdbcType=VARCHAR},
+      </if>
+      <if test="scDate != null" >
+        sc_date = #{scDate,jdbcType=DATE},
+      </if>
+      <if test="scIsall != null" >
+        sc_isall = #{scIsall,jdbcType=VARCHAR},
+      </if>
+      <if test="scAbsentees != null" >
+        sc_absentees = #{scAbsentees,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sleepcheck_id = #{sleepcheckId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.entity.SleepCheck" >
+    update sleepcheck
+    set sc_user = #{scUser,jdbcType=VARCHAR},
+      sc_dor = #{scDor,jdbcType=VARCHAR},
+      sc_date = #{scDate,jdbcType=DATE},
+      sc_isall = #{scIsall,jdbcType=VARCHAR},
+      sc_absentees = #{scAbsentees,jdbcType=VARCHAR}
+    where sleepcheck_id = #{sleepcheckId,jdbcType=INTEGER}
+  </update>
+</mapper>

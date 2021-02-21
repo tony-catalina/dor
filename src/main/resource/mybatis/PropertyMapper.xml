@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.PropertyMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.Property" >
+    <result column="property_id" property="propertyId" jdbcType="INTEGER" />
+    <result column="property_dor" property="propertyDor" jdbcType="VARCHAR" />
+    <result column="property_name" property="propertyName" jdbcType="VARCHAR" />
+    <result column="property_val" property="propertyVal" jdbcType="DECIMAL" />
+    <result column="property_user" property="propertyUser" jdbcType="VARCHAR" />
+    <result column="property_date" property="propertyDate" jdbcType="DATE" />
+    <result column="property_state" property="propertyState" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.server.entity.Property" >
+    insert into property (property_id, property_dor, property_name, 
+      property_val, property_user, property_date, 
+      property_state)
+    values (#{propertyId,jdbcType=INTEGER}, #{propertyDor,jdbcType=VARCHAR}, #{propertyName,jdbcType=VARCHAR}, 
+      #{propertyVal,jdbcType=DECIMAL}, #{propertyUser,jdbcType=VARCHAR}, #{propertyDate,jdbcType=DATE}, 
+      #{propertyState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.Property" >
+    insert into property
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="propertyId != null" >
+        property_id,
+      </if>
+      <if test="propertyDor != null" >
+        property_dor,
+      </if>
+      <if test="propertyName != null" >
+        property_name,
+      </if>
+      <if test="propertyVal != null" >
+        property_val,
+      </if>
+      <if test="propertyUser != null" >
+        property_user,
+      </if>
+      <if test="propertyDate != null" >
+        property_date,
+      </if>
+      <if test="propertyState != null" >
+        property_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="propertyId != null" >
+        #{propertyId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyDor != null" >
+        #{propertyDor,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyName != null" >
+        #{propertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyVal != null" >
+        #{propertyVal,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyUser != null" >
+        #{propertyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyDate != null" >
+        #{propertyDate,jdbcType=DATE},
+      </if>
+      <if test="propertyState != null" >
+        #{propertyState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.dor_userMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.dor_user" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_power" property="userPower" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_mz" property="userMz" jdbcType="VARCHAR" />
+    <result column="user_zzmm" property="userZzmm" jdbcType="VARCHAR" />
+    <result column="user_rxny" property="userRxny" jdbcType="DATE" />
+    <result column="user_class" property="userClass" jdbcType="VARCHAR" />
+    <result column="user_yx" property="userYx" jdbcType="VARCHAR" />
+    <result column="user_xz" property="userXz" jdbcType="VARCHAR" />
+    <result column="user_zy" property="userZy" jdbcType="VARCHAR" />
+    <result column="user_number" property="userNumber" jdbcType="VARCHAR" />
+    <result column="user_jtzz" property="userJtzz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_email, user_power, user_phone, user_birthday, user_sex, 
+    user_mz, user_zzmm, user_rxny, user_class, user_yx, user_xz, user_zy, user_number, 
+    user_jtzz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dor_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dor_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.entity.dor_user" >
+    insert into dor_user (user_id, user_name, user_email, 
+      user_power, user_phone, user_birthday, 
+      user_sex, user_mz, user_zzmm, 
+      user_rxny, user_class, user_yx, 
+      user_xz, user_zy, user_number, 
+      user_jtzz)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
+      #{userPower,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userBirthday,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=VARCHAR}, #{userMz,jdbcType=VARCHAR}, #{userZzmm,jdbcType=VARCHAR}, 
+      #{userRxny,jdbcType=DATE}, #{userClass,jdbcType=VARCHAR}, #{userYx,jdbcType=VARCHAR}, 
+      #{userXz,jdbcType=VARCHAR}, #{userZy,jdbcType=VARCHAR}, #{userNumber,jdbcType=VARCHAR}, 
+      #{userJtzz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.dor_user" >
+    insert into dor_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userPower != null" >
+        user_power,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userBirthday != null" >
+        user_birthday,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userMz != null" >
+        user_mz,
+      </if>
+      <if test="userZzmm != null" >
+        user_zzmm,
+      </if>
+      <if test="userRxny != null" >
+        user_rxny,
+      </if>
+      <if test="userClass != null" >
+        user_class,
+      </if>
+      <if test="userYx != null" >
+        user_yx,
+      </if>
+      <if test="userXz != null" >
+        user_xz,
+      </if>
+      <if test="userZy != null" >
+        user_zy,
+      </if>
+      <if test="userNumber != null" >
+        user_number,
+      </if>
+      <if test="userJtzz != null" >
+        user_jtzz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPower != null" >
+        #{userPower,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        #{userBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userMz != null" >
+        #{userMz,jdbcType=VARCHAR},
+      </if>
+      <if test="userZzmm != null" >
+        #{userZzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="userRxny != null" >
+        #{userRxny,jdbcType=DATE},
+      </if>
+      <if test="userClass != null" >
+        #{userClass,jdbcType=VARCHAR},
+      </if>
+      <if test="userYx != null" >
+        #{userYx,jdbcType=VARCHAR},
+      </if>
+      <if test="userXz != null" >
+        #{userXz,jdbcType=VARCHAR},
+      </if>
+      <if test="userZy != null" >
+        #{userZy,jdbcType=VARCHAR},
+      </if>
+      <if test="userNumber != null" >
+        #{userNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userJtzz != null" >
+        #{userJtzz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.entity.dor_user" >
+    update dor_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPower != null" >
+        user_power = #{userPower,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        user_birthday = #{userBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userMz != null" >
+        user_mz = #{userMz,jdbcType=VARCHAR},
+      </if>
+      <if test="userZzmm != null" >
+        user_zzmm = #{userZzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="userRxny != null" >
+        user_rxny = #{userRxny,jdbcType=DATE},
+      </if>
+      <if test="userClass != null" >
+        user_class = #{userClass,jdbcType=VARCHAR},
+      </if>
+      <if test="userYx != null" >
+        user_yx = #{userYx,jdbcType=VARCHAR},
+      </if>
+      <if test="userXz != null" >
+        user_xz = #{userXz,jdbcType=VARCHAR},
+      </if>
+      <if test="userZy != null" >
+        user_zy = #{userZy,jdbcType=VARCHAR},
+      </if>
+      <if test="userNumber != null" >
+        user_number = #{userNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userJtzz != null" >
+        user_jtzz = #{userJtzz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.entity.dor_user" >
+    update dor_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_power = #{userPower,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_mz = #{userMz,jdbcType=VARCHAR},
+      user_zzmm = #{userZzmm,jdbcType=VARCHAR},
+      user_rxny = #{userRxny,jdbcType=DATE},
+      user_class = #{userClass,jdbcType=VARCHAR},
+      user_yx = #{userYx,jdbcType=VARCHAR},
+      user_xz = #{userXz,jdbcType=VARCHAR},
+      user_zy = #{userZy,jdbcType=VARCHAR},
+      user_number = #{userNumber,jdbcType=VARCHAR},
+      user_jtzz = #{userJtzz,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getMaxUserNumber" resultType="String" parameterType="String" >
+      select MAX(user_number) from dor_user where 1=1
+    <if test="year != null" >
+     and user_number like CONCAT('%',#{year},'%')
+    </if>
+  </select>
+</mapper>

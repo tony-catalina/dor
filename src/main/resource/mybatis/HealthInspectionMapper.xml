@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.server.mapper.HealthInspectionMapper" >
+  <resultMap id="BaseResultMap" type="com.server.entity.HealthInspection" >
+    <id column="healthinspection_id" property="healthinspectionId" jdbcType="INTEGER" />
+    <result column="hi_user" property="hiUser" jdbcType="VARCHAR" />
+    <result column="hi_date" property="hiDate" jdbcType="DATE" />
+    <result column="hi_dor" property="hiDor" jdbcType="VARCHAR" />
+    <result column="hi_grade" property="hiGrade" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    healthinspection_id, hi_user, hi_date, hi_dor, hi_grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from healthinspection
+    where healthinspection_id = #{healthinspectionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from healthinspection
+    where healthinspection_id = #{healthinspectionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.entity.HealthInspection" >
+    insert into healthinspection (healthinspection_id, hi_user, hi_date, 
+      hi_dor, hi_grade)
+    values (#{healthinspectionId,jdbcType=INTEGER}, #{hiUser,jdbcType=VARCHAR}, #{hiDate,jdbcType=DATE}, 
+      #{hiDor,jdbcType=VARCHAR}, #{hiGrade,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.entity.HealthInspection" >
+    insert into healthinspection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="healthinspectionId != null" >
+        healthinspection_id,
+      </if>
+      <if test="hiUser != null" >
+        hi_user,
+      </if>
+      <if test="hiDate != null" >
+        hi_date,
+      </if>
+      <if test="hiDor != null" >
+        hi_dor,
+      </if>
+      <if test="hiGrade != null" >
+        hi_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="healthinspectionId != null" >
+        #{healthinspectionId,jdbcType=INTEGER},
+      </if>
+      <if test="hiUser != null" >
+        #{hiUser,jdbcType=VARCHAR},
+      </if>
+      <if test="hiDate != null" >
+        #{hiDate,jdbcType=DATE},
+      </if>
+      <if test="hiDor != null" >
+        #{hiDor,jdbcType=VARCHAR},
+      </if>
+      <if test="hiGrade != null" >
+        #{hiGrade,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.entity.HealthInspection" >
+    update healthinspection
+    <set >
+      <if test="hiUser != null" >
+        hi_user = #{hiUser,jdbcType=VARCHAR},
+      </if>
+      <if test="hiDate != null" >
+        hi_date = #{hiDate,jdbcType=DATE},
+      </if>
+      <if test="hiDor != null" >
+        hi_dor = #{hiDor,jdbcType=VARCHAR},
+      </if>
+      <if test="hiGrade != null" >
+        hi_grade = #{hiGrade,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where healthinspection_id = #{healthinspectionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.entity.HealthInspection" >
+    update healthinspection
+    set hi_user = #{hiUser,jdbcType=VARCHAR},
+      hi_date = #{hiDate,jdbcType=DATE},
+      hi_dor = #{hiDor,jdbcType=VARCHAR},
+      hi_grade = #{hiGrade,jdbcType=DECIMAL}
+    where healthinspection_id = #{healthinspectionId,jdbcType=INTEGER}
+  </update>
+</mapper>
